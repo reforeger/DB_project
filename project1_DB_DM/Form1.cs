@@ -18,7 +18,22 @@ namespace project1_DB_DM
         SqlDataAdapter adapter, adapter2;
         int Id = 0;
 
-        private void Lisa_Click(object sender, EventArgs e)
+        public Group_Data()
+        {
+            InitializeComponent();
+            DisplayData();
+        }
+
+        private void DisplayData()
+        {
+            connect.Open();
+            DataTable table = new DataTable();
+            adapter = new SqlDataAdapter("SELECT * FROM cyberdata", connect);
+            adapter.Fill(table);
+            dataGridView1.DataSource = table;
+        }
+
+            private void Lisa_Click(object sender, EventArgs e)
         {
             if (Lisa.Text != "" && Muuda.Text != "" && Kustuta.Text != "" && comboBox1.SelectedItem != null)
             {
@@ -43,9 +58,6 @@ namespace project1_DB_DM
         }
 
 
-        public Group_Data()
-        {
-            InitializeComponent();
-        }
+
     }
 }
